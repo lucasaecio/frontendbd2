@@ -18,21 +18,15 @@ export default {
   methods: {
     ...mapActions({
       getAllCustomers: "customers/getAllCustomers",
-      getAllProducts: "products/getAllProducts",
-      getAllOrders: "orders/getAllOrders",
       getAllShippers: "shippers/getAllShippers",
       getAllEmployees: "employees/getAllEmployees",
-      getAllSuppliers: "suppliers/getAllSuppliers",
     }),
   },
   created() {
     Promise.all([
-      this.getAllProducts(),
       this.getAllCustomers(),
-      this.getAllOrders(),
       this.getAllShippers(),
       this.getAllEmployees(),
-      this.getAllSuppliers(),
     ]);
   },
 };

@@ -42,7 +42,7 @@
                     <v-select
                       v-model="editedItem.customer"
                       :items="customers"
-                      item-text="CustomerID"
+                      item-text="CompanyName"
                       return-object
                       label="Cliente"
                       required
@@ -151,6 +151,7 @@ const DEFAULT_ORDER_PRODUCT = {
 
 export default {
   data: () => ({
+    showDialogForm: false,
     headers: [
       {
         text: "OrderID",
@@ -263,6 +264,10 @@ export default {
 
       this.closeDialogForm();
     },
+  },
+  created() {
+    this.getAllOrders();
+    this.getAllProducts();
   },
 };
 </script>

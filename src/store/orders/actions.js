@@ -47,12 +47,7 @@ const createOrder = (context, payload) => {
         resolve(resp.data);
       })
       .catch((error) => {
-        let objectError = error.response.data.errors;
-        if (objectError) {
-          Object.values(objectError).forEach((error, key) => {
-            Vue.$toast.error(error[key]);
-          });
-        }
+        Vue.$toast.error(error.response.data[0].message);
         reject(error.response);
       })
       .finally(() => {});

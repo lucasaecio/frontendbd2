@@ -21,6 +21,7 @@
     <div
       class="chart-card mt-5"
       :class="{ 'default-chart': !isChatDataAvailable }"
+      :key="forceUpdate"
     >
       <LineChartGenerator
         :chart-data="chartData"
@@ -62,6 +63,7 @@ export default {
   components: { LineChartGenerator },
   data: () => ({
     supplierFilterID: 0,
+    forceUpdate: 0,
     chartData: {
       labels: [],
       datasets: [],
@@ -90,16 +92,18 @@ export default {
               return previousValue + currentValue;
             });
 
-            if (sum <= 70) {
+            if (sum <= 150) {
               companiesData.splice(index, 1);
             }
           });
 
           this.chartData.datasets = companiesData;
+          this.forceUpdate++;
         }
       );
     },
     ...mapActions({
+      getAllSuppliers: "suppliers/getAllSuppliers",
       getDashboardData: "dashboard/getDashboardData",
     }),
   },
@@ -111,7 +115,9 @@ export default {
       );
     },
   },
-  created() {},
+  created() {
+    this.getAllSuppliers();
+  },
 };
 </script>
 

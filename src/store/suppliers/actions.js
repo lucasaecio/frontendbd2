@@ -12,7 +12,7 @@ const getAllSuppliers = ({ commit }) => {
         resolve(resp.data.data);
       })
       .catch((error) => {
-        reject(error.data.errors);
+        reject(error);
       });
   });
 };
